@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Pressable } from "react-native";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
@@ -11,14 +11,18 @@ interface NotificationCardProps {
 }
 
 export function NotificationCard({ notification }: NotificationCardProps) {
-  const acknowledgeNotification = (notification: Notification) => () => {
+  const [isAcknowledged, setIsAcknowledged] = useState(
+    notification.isAcknowledged
+  );
+
+  const acknowledgeNotification = () => {
     // Reconhecer alarme
 
     // Atualizar notificação
-    notification.isAcknowledged = true;
+    setIsAcknowledged(true);
   };
 
-  const setIcon = (isAcknowledged: boolean) => {
+  const setIcon = () => {
     if (isAcknowledged) {
       return "checkmark-done-circle";
     } else {
@@ -26,7 +30,7 @@ export function NotificationCard({ notification }: NotificationCardProps) {
     }
   };
 
-  const setIconColor = (isAcknowledged: boolean) => {
+  const setIconColor = () => {
     if (isAcknowledged) {
       return "green";
     } else {
@@ -40,12 +44,16 @@ export function NotificationCard({ notification }: NotificationCardProps) {
         <ThemedText className="text-center text-xl mb-2">
           {notification.workstationId}
         </ThemedText>
-        <Ionicons name={setIcon(notification.isAcknowledged)} size={24} color={setIconColor(notification.isAcknowledged)} />
+        <Ionicons
+          name={setIcon()}
+          size={24}
+          color={setIconColor()}
+        />
       </ThemedView>
       <Collapsible title={notification.message}>
         <Pressable
           className="bg-cyan-600 p-3 m-3 mr-9 w-fit-content rounded-full"
-          onPress={acknowledgeNotification(notification)}
+          onPress={acknowledgeNotification}
         >
           <ThemedText className="text-center text-xl">
             Reconhecer alarme
