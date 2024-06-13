@@ -1,14 +1,32 @@
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 import * as Notifications from "expo-notifications";
 import ParallaxScrollView from "@/src/components/ParallaxScrollView";
 import { NotificationCard } from "@/src/components/NotificationCard";
 import { useNotifications } from "@/src/hooks/apiNotifications";
+import { ThemedText } from "@/src/components/ThemedText";
 
-const notificationCards = useNotifications().map((notification) => (
-  <NotificationCard key={notification.id} notification={notification} />
-));
+export default function NotificationsScr() {
+  const [loading, setLoading] = useState(true);
+  const [notificationCards, setNotificationCards] = useState<React.ReactNode[]>([]);
 
-export default function TabTwoScreen() {
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const notifications = useNotifications();
+      const cards = notifications.map((notification) => (
+        <NotificationCard key={notification.id} notification={notification} />
+      ));
+      setLoading(false);
+      setNotificationCards(cards);
+    };
+
+    fetchNotifications();
+  }, []);
+
+  if (loading) {
+    return <ThemedText>Carregando...</ThemedText>;
+  }
+
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,

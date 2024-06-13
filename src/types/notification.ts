@@ -1,9 +1,9 @@
 export type Notification = {
     id: string;
-    workstationId: string;
+    workstation_id: string;
     message: string;
-    isAcknowledged: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date;
+    isacknowledged: boolean;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date;
 }

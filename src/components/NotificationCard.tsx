@@ -14,11 +14,12 @@ interface NotificationCardProps {
 }
 
 export function NotificationCard({ notification }: NotificationCardProps) {
+  console.log(notification);
   const [showDialog, setShowDialog] = useState(false);
   const [responsible, setResponsible] = useState("");
   const [action, setAction] = useState("");
-  const [isAcknowledged, setIsAcknowledged] = useState(
-    notification.isAcknowledged
+  const [isacknowledged, setIsAcknowledged] = useState(
+    notification.isacknowledged
   );
   const [showAcknowledgeConfirmation, setShowAcknowledgeConfirmation] =
     useState(false);
@@ -36,7 +37,7 @@ export function NotificationCard({ notification }: NotificationCardProps) {
   };
 
   const setIcon = () => {
-    if (isAcknowledged) {
+    if (isacknowledged) {
       return "checkmark-done-circle";
     } else {
       return "warning";
@@ -44,7 +45,7 @@ export function NotificationCard({ notification }: NotificationCardProps) {
   };
 
   const setIconColor = () => {
-    if (isAcknowledged) {
+    if (isacknowledged) {
       return "green";
     } else {
       return "red";
@@ -70,19 +71,19 @@ export function NotificationCard({ notification }: NotificationCardProps) {
         <ThemedView className="bg-slate-100 dark:bg-gray-700 p-2 w-fit-content rounded-xl shadow-md">
           <ThemedView className="bg-slate-100 dark:bg-gray-700 flex flex-row content-around justify-between">
             <ThemedText className="text-center text-xl mb-2">
-              {notification.workstationId}
+              {notification.workstation_id}
             </ThemedText>
             <Ionicons name={setIcon()} size={24} color={setIconColor()} />
           </ThemedView>
           <Collapsible title={notification.message}>
             <Pressable
               className="bg-cyan-600 p-3 m-3 mr-9 w-fit-content rounded-full"
-              style={{ opacity: isAcknowledged ? 0.5 : 1 }}
+              style={{ opacity: isacknowledged ? 0.5 : 1 }}
               onPress={acknowledgeNotification}
-              disabled={isAcknowledged}
+              disabled={isacknowledged}
             >
               <ThemedText className="text-center text-xl">
-                {isAcknowledged ? "Alarme reconhecido" : "Reconhecer alarme"}
+                {isacknowledged ? "Alarme reconhecido" : "Reconhecer alarme"}
               </ThemedText>
             </Pressable>
           </Collapsible>
