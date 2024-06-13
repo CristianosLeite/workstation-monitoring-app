@@ -1,4 +1,3 @@
-import React from "react";
 import { router } from "expo-router";
 import { Pressable, Text } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";

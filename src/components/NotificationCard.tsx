@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import { Pressable } from "react-native";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
 import { Collapsible } from "@/src/components/Collapsible";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Notification } from "@/src/types/notification";
+
 
 interface NotificationCardProps {
   notification: Notification;
@@ -15,7 +16,7 @@ export function NotificationCard({ notification }: NotificationCardProps) {
     notification.isAcknowledged
   );
 
-  const acknowledgeNotification = () => {
+  const acknowledgeNotification = async () => {
     // Reconhecer alarme
 
     // Atualizar notificação
