@@ -2,7 +2,13 @@ export type Workstation = {
     id: string;
     companyId: string;
     name: string;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
 };
+
+export interface WorkstationCardProps {
+    workstation: Workstation;
+  }
+  

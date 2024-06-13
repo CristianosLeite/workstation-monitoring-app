@@ -6,7 +6,6 @@ import { Collapsible } from "@/src/components/Collapsible";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Notification } from "@/src/types/notification";
 
-
 interface NotificationCardProps {
   notification: Notification;
 }

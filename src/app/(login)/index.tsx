@@ -12,7 +12,7 @@ export default function Login() {
           "rgba(0,0,0,0.6138830532212884)",
           "rgba(1,164,78,0.5186449579831933)",
           "rgba(1,28,67,0.7175245098039216)",
-        ]}
+          ]}
       >
         <Image style={{width: 250, height: 250, marginTop: 100}} source={require("../../assets/images/login-ui-logo.png")}/>
         <LoginCard />

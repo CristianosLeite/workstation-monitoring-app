@@ -17,8 +17,6 @@ export default function TabTwoScreen() {
     }),
   });
 
-  // Second, call the method
-
   Notifications.scheduleNotificationAsync({
     content: {
       title: "Look at that notification",
