@@ -42,6 +42,16 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
+        <Stack.Screen 
+          name="Workstations" 
+          options={{
+            title: "Estações de Trabalho",
+            headerShown: true,
+            statusBarHidden: false,
+            navigationBarHidden: false,
+            statusBarColor: "#000000",
+          }}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
