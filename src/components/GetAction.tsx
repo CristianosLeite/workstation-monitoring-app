@@ -15,6 +15,7 @@ export function GetAction() {
     setAction,
     setShowAcknowledgeConfirmation,
     setShowDialog: setShowAlertDialog,
+    setIsAcknowledged,
   } = useContext(AcknowledgeContext);
   return (
     <ThemedView>
@@ -59,6 +60,7 @@ export function GetAction() {
               setResponsible("");
               setAction("");
               setShowAlertDialog(false);
+              setIsAcknowledged(false);
             }}
           >
             <ThemedText className="text-center text-xl">Cancelar</ThemedText>

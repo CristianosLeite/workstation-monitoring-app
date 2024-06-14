@@ -9,7 +9,6 @@ interface AcknowledgeConfirmationProps {
 }
 
 export function AcknowledgeConfirmation({
-  onConfirm,
 }: AcknowledgeConfirmationProps) {
   const {
     showAcknowledgeConfirmation: showAcknowledgeConfirmation,
