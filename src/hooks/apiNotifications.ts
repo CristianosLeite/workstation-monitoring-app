@@ -12,12 +12,15 @@ async function getNotifications() {
   }
 }
 
-export async function updateNotification(notification: Notification) {
-  try {
-    await axios.patch(`http://172.18.15.10:4000/api/notifications/${notification.id}`, notification);
-  } catch (error) {
-    console.error(error);
-  }
+export async function updateNotification(
+  id: string,
+  isAcknowledged: boolean,
+  responsible: string,
+  action: string
+): Promise<Notification> {
+  const response = await axios.patch('http://172.18.15.10:4000/api/notifications/update',
+    { id: id, isAcknowledged: isAcknowledged, responsible: responsible, action: action })
+  return response.data;
 }
 
 async function init() {

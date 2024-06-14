@@ -3,12 +3,20 @@ import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
 import { Pressable } from "react-native";
 import { AcknowledgeContext } from "../hooks/acknowledgeContext";
+import { Notification } from "@/src/types/notification";
+import { updateNotification } from "../hooks/apiNotifications";
 
 interface AcknowledgeConfirmationProps {
   onConfirm: () => void;
+  notification: Notification;
+  responsible: string;
+  action: string;
 }
 
 export function AcknowledgeConfirmation({
+  notification,
+  responsible,
+  action,
 }: AcknowledgeConfirmationProps) {
   const {
     showAcknowledgeConfirmation: showAcknowledgeConfirmation,
@@ -27,7 +35,10 @@ export function AcknowledgeConfirmation({
           </ThemedText>
           <Pressable
             className="bg-cyan-600 p-3 m-3 mr-9 w-fit-content rounded-full"
-            onPress={() => setShowAcknowledgeConfirmation(false)}
+            onPress={() => {
+              updateNotification(notification.id, true, responsible, action);
+              setShowAcknowledgeConfirmation(false);
+            }}
           >
             <ThemedText className="text-center text-xl">Sim</ThemedText>
           </Pressable>
