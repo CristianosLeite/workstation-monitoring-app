@@ -17,4 +17,7 @@ export const AcknowledgeContext = React.createContext({
     setAction: (action: string) => {
         console.log('action', action);
     },
+    setIsAcknowledged: (isAcknowledged: boolean) => {
+        console.log('isAcknowledged', isAcknowledged);
+    },
 });

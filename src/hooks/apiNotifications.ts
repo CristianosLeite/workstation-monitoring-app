@@ -12,6 +12,14 @@ async function getNotifications() {
   }
 }
 
+export async function updateNotification(notification: Notification) {
+  try {
+    await axios.patch(`http://172.18.15.10:4000/api/notifications/${notification.id}`, notification);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function init() {
   notifications = await getNotifications();
 }
@@ -19,5 +27,5 @@ async function init() {
 init();
 
 export function useNotifications() {
-    return notifications;
+  return notifications;
 }

@@ -14,7 +14,6 @@ interface NotificationCardProps {
 }
 
 export function NotificationCard({ notification }: NotificationCardProps) {
-  console.log(notification);
   const [showDialog, setShowDialog] = useState(false);
   const [responsible, setResponsible] = useState("");
   const [action, setAction] = useState("");
@@ -63,10 +62,11 @@ export function NotificationCard({ notification }: NotificationCardProps) {
         setAction: () => {},
         showAcknowledgeConfirmation: showAcknowledgeConfirmation,
         setShowAcknowledgeConfirmation: setShowAcknowledgeConfirmation,
+        setIsAcknowledged: setIsAcknowledged,
       }}
     >
       <GetAction />
-      <AcknowledgeConfirmation />
+      <AcknowledgeConfirmation onConfirm={acknowledgeNotification} />
       {!showDialog && !showAcknowledgeConfirmation && (
         <ThemedView className="bg-slate-100 dark:bg-gray-700 p-2 w-fit-content rounded-xl shadow-md">
           <ThemedView className="bg-slate-100 dark:bg-gray-700 flex flex-row content-around justify-between">
