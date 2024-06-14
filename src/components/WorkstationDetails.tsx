@@ -21,7 +21,7 @@ export function WorkstationDetails({workstation}: WorkstationCardProps) {
         </ThemedText>
         <ThemedText className="m-4">
           Cadastrada em: &nbsp;
-          {workstation.createdAt}
+          {new Date(workstation.created_at).toLocaleDateString()}
         </ThemedText>
         </ThemedView>
         <ThemedText className="m-4">

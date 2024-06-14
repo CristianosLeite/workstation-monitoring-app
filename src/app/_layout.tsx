@@ -42,8 +42,8 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
-        <Stack.Screen 
-          name="Workstations" 
+        <Stack.Screen
+          name="Workstations"
           options={{
             title: "Estações de Trabalho",
             headerShown: true,

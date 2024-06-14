@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Image } from "react-native";
-import * as Notifications from "expo-notifications";
+import { Image } from "react-native";
 import ParallaxScrollView from "@/src/components/ParallaxScrollView";
 import { NotificationCard } from "@/src/components/NotificationCard";
 import { useNotifications } from "@/src/hooks/apiNotifications";
@@ -8,7 +7,9 @@ import { ThemedText } from "@/src/components/ThemedText";
 
 export default function NotificationsScr() {
   const [loading, setLoading] = useState(true);
-  const [notificationCards, setNotificationCards] = useState<React.ReactNode[]>([]);
+  const [notificationCards, setNotificationCards] = useState<React.ReactNode[]>(
+    []
+  );
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -27,28 +28,13 @@ export default function NotificationsScr() {
     return <ThemedText>Carregando...</ThemedText>;
   }
 
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: false,
-      shouldSetBadge: false,
-    }),
-  });
-
-  Notifications.scheduleNotificationAsync({
-    content: {
-      title: "Look at that notification",
-      body: "I'm so proud of myself!",
-    },
-    trigger: null,
-  });
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#77b596", dark: "#1D3D47" }}
       headerImage={
         <Image
+          className="w-full h-64 object-cover"
           source={require("@/src/assets/images/splash.png")}
-          style={styles.headerImage}
         />
       }
     >
@@ -56,11 +42,3 @@ export default function NotificationsScr() {
     </ParallaxScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  headerImage: {
-    position: "relative",
-    height: 250,
-    width: "100%",
-  },
-});
