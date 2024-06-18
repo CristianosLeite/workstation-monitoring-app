@@ -33,26 +33,31 @@ export function LoginCard() {
     fetchIPAndPort();
   }, []);
 
+  const handleSuccessLogin = () => {
+    router.push("Workstations");
+  };
+
   const handleLogin = async () => {
-    const hasHardware = await LocalAuthentication.hasHardwareAsync();
     const isEnrolled = await LocalAuthentication.isEnrolledAsync();
 
-    if (hasHardware && isEnrolled) {
-      const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: "Use a sua digital para continuar",
-      });
+    const result = await LocalAuthentication.authenticateAsync({
+      promptMessage: isEnrolled ? "Use a sua digital para continuar" : "Senha",
+      biometricsSecurityLevel: "weak",
+      disableDeviceFallback: false,
+    });
 
-      if (result.success) {
-        router.push("Workstations");
-        const { status } = await Notifications.requestPermissionsAsync();
-        if (status !== "granted") {
-          alert(
-            "Você precisa permitir o envio de notificações para receber alertas de alarme!"
-          );
-        } else {
-          console.log("Permissão de notificação concedida");
-        }
+    if (result.success) {
+      router.push("Workstations");
+      const { status } = await Notifications.requestPermissionsAsync();
+      if (status !== "granted") {
+        alert(
+          "Você precisa permitir o envio de notificações para receber alertas de alarme!"
+        );
+      } else {
+        console.log("Permissão de notificação concedida");
       }
+    } else {
+      alert("Não foi possível autenticar o dispositivo");
     }
   };
 
