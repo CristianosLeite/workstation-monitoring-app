@@ -11,9 +11,10 @@ export default function HomeScreen() {
     []
   );
 
+  const workstations = useWorkstations();
+
   useEffect(() => {
     const fetchWorkstations = async () => {
-      const workstations = useWorkstations();
       const cards = workstations.map((workstation) => (
         <WorkstationCard key={workstation.id} workstation={workstation} />
       ));
@@ -22,7 +23,7 @@ export default function HomeScreen() {
     };
 
     fetchWorkstations();
-  }, []);
+  }, [workstations]);
 
   if (loading) {
     return <ThemedText>Carregando...</ThemedText>;
@@ -31,8 +32,7 @@ export default function HomeScreen() {
   return (
     <ScrollView>
       <ThemedView className="p-3 flex-1">
-        <ThemedView 
-          className="flex-row justify-between items-center">
+        <ThemedView className="flex-row justify-between items-center">
           <ThemedText className="m-4" type="title">
             Estações cadastradas
           </ThemedText>

@@ -2,7 +2,7 @@
   "expo": {
     "name": "workstation-monitoring-app",
     "slug": "workstation-monitoring-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "myapp",
@@ -13,14 +13,21 @@
       "backgroundColor": "#77b596"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cristianosleite.workstationmonitoringapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.NOTIFICATION_LISTENER_SERVICE"]
+      "permissions": [
+        "android.permission.NOTIFICATION_LISTENER_SERVICE",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
+      "package": "com.cristianosleite.workstationmonitoringapp",
+      "versionCode": 12
     },
     "web": {
       "bundler": "metro",
@@ -30,6 +37,14 @@
     "plugins": [
       "expo-router",
       [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesClearTextTraffic": true
+          }
+        }
+      ],
+      [
         "expo-local-authentication",
         {
           "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
@@ -38,6 +53,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8d2c6249-3dba-4c7e-adfc-1b452ad52075"
+      }
     }
   }
 }

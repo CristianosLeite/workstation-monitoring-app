@@ -1,15 +1,33 @@
-import { Notification } from "../types/notification";
 import axios from 'axios';
+import { useEffect, useState } from "react";
+import { Notification } from "../types/notification";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-let notifications: Notification[] = [];
+export function useNotifications() {
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
-async function getNotifications() {
-  try {
-    const response = await axios.get('http://172.18.15.10:4000/api/notifications');
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  useEffect(() => {
+    const fetchIPAndPort = async () => {
+      const ip = await AsyncStorage.getItem("ip");
+      const port = await AsyncStorage.getItem("port");
+      
+      if (!ip || !port) {
+        console.error('IP ou porta não definidos');
+        return;
+      }
+
+      try {
+        const response = await axios.get(`http://${ip}:${port}/api/notifications`);
+        setNotifications(response.data);
+
+      } catch (error) {
+        console.error('Erro ao buscar notificações:', error);
+      }
+    };
+    fetchIPAndPort();
+  }, []);
+
+  return notifications;
 }
 
 export async function updateNotification(
@@ -18,17 +36,9 @@ export async function updateNotification(
   responsible: string,
   action: string
 ): Promise<Notification> {
-  const response = await axios.patch('http://172.18.15.10:4000/api/notifications/update',
+  const ip = AsyncStorage.getItem('ip');
+  const port = AsyncStorage.getItem('port');
+  const response = await axios.patch(`http://${ip}:${port}/api/notifications/update`,
     { id: id, isAcknowledged: isAcknowledged, responsible: responsible, action: action })
   return response.data;
-}
-
-async function init() {
-  notifications = await getNotifications();
-}
-
-init();
-
-export function useNotifications() {
-  return notifications;
 }

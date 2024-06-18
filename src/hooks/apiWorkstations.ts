@@ -1,23 +1,31 @@
-import { Workstation } from "@/src/types/workstation";
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Workstation } from "@/src/types/workstation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-let workstations: Workstation[] = [];
+export function useWorkstations() {
+    const [workstations, setWorkstations] = useState<Workstation[]>([]);
 
-async function getWorkstations() {
-    try {
-        const response = await axios.get('http://172.18.15.10:4000/api/workstations');
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-}
+    useEffect(() => {
+      const fetchData = async () => {
+        const ip = await AsyncStorage.getItem("ip");
+        const port = await AsyncStorage.getItem("port");
 
-async function init() {
-    workstations = await getWorkstations();
-}
+        if (!ip || !port) {
+          console.error('IP ou porta não definidos');
+          return;
+        }
 
-init();
+        try {
+            const response = await axios.get(`http://${ip}:${port}/api/workstations`);
+            setWorkstations(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar workstations:', error);
+        }
+      };
 
-export const useWorkstations = () => {
+      fetchData();
+    }, []);
+
     return workstations;
 }

@@ -61,7 +61,7 @@ export function NotificationCard({ notification }: NotificationCardProps) {
             </ThemedText>
             <Ionicons name={iconName} size={24} color={iconColor} />
           </ThemedView>
-          <Collapsible title={notification.message}>
+          <Collapsible title={notification.content}>
             <Pressable
               className="bg-cyan-600 p-3 m-3 mr-9 w-fit-content rounded-full"
               style={{ opacity: isAcknowledged ? 0.5 : 1 }}

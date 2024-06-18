@@ -11,9 +11,10 @@ export default function NotificationsScr() {
     []
   );
 
+  const notifications = useNotifications();
+
   useEffect(() => {
     const fetchNotifications = async () => {
-      const notifications = useNotifications();
       const cards = notifications.map((notification) => (
         <NotificationCard key={notification.id} notification={notification} />
       ));
@@ -22,7 +23,7 @@ export default function NotificationsScr() {
     };
 
     fetchNotifications();
-  }, []);
+  }, [notifications]);
 
   if (loading) {
     return <ThemedText>Carregando...</ThemedText>;

@@ -1,7 +1,7 @@
 export type Notification = {
     id: string;
     workstation_id: string;
-    message: string;
+    content: string;
     isacknowledged: boolean;
     responsible: string;
     action: string;
