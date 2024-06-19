@@ -70,7 +70,7 @@ export function LoginCard() {
           className="bg-cyan-950 p-3 bottom-0 rounded-full"
           onPress={handleLogin}
         >
-          <Text className="text-green-100 text-center text-xl">
+          <Text className="text-white font-semibold text-center text-xl">
             Iniciar Aplicação
           </Text>
         </Pressable>

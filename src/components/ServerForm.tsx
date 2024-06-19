@@ -31,20 +31,20 @@ export function ServerForm({ showForm, setShowForm }: ServerFormProps) {
       <Modal animationType="slide" transparent={true} visible={isVisible}>
         <View className="flex-1 justify-end">
           <ThemedView className="bg-slate-100 shadow-lg blur-md dark:bg-gray-700 p-4 w-fit-content rounded-xl">
-            <ThemedText className="text-center text-xl mb-4 dark:text-gray-50">
+            <ThemedText className="text-center text-xl mb-4 dark:text-white">
               Digite o IP e a porta do servidor
             </ThemedText>
             <TextInput
               className="mb-2 border-2 border-gray-300 rounded-lg h-12 p-1 dark:text-gray-50"
               placeholder="IP: ###.###.###.###"
-              placeholderTextColor="#888"
+              placeholderTextColor="#555"
               value={ip}
               onChangeText={setIp}
             />
             <TextInput
               className="mb-2 border-2 border-gray-300 rounded-lg h-12 p-1 dark:text-gray-50"
               placeholder="Port: ####"
-              placeholderTextColor="#888"
+              placeholderTextColor="#555"
               value={port}
               onChangeText={setPort}
             />
@@ -52,7 +52,7 @@ export function ServerForm({ showForm, setShowForm }: ServerFormProps) {
               className="bg-green-500 dark:bg-green-900 p-3 m-3 w-fit-content rounded-full"
               onPress={handleSubmit}
             >
-              <ThemedText className="text-center text-xl">Salvar</ThemedText>
+              <ThemedText className="text-center text-xl font-semibold">Salvar</ThemedText>
             </Pressable>
           </ThemedView>
         </View>
