@@ -46,10 +46,11 @@ export default function RootLayout() {
           name="Workstations"
           options={{
             title: "Estações de Trabalho",
-            headerShown: true,
+            headerShown: false,
             statusBarHidden: false,
             navigationBarHidden: false,
             statusBarColor: "#000000",
+            orientation: "portrait",
           }}
         />
         <Stack.Screen name="+not-found" />
